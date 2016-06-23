@@ -1,0 +1,22 @@
+{
+  "name": "jison_assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruk-na-Ziddi/jison_assignment.git"
+  },
+  "author": "ankurks@thoughtworks.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruk-na-Ziddi/jison_assignment/issues"
+  },
+  "homepage": "https://github.com/ruk-na-Ziddi/jison_assignment#readme",
+  "devDependencies": {
+    "jison": "^0.4.17"
+  }
+}
