@@ -17,40 +17,20 @@
 /lex
 
 %{
-    var get_tuples = function(){
-        var final = {};
-        for(var i = 0; i < arguments.length; i++){
-            final[Object.keys(arguments[i])[0]] = arguments[i][Object.keys(arguments[i])[0]]
-        }
-        return final;
-    }
+    var list = [];
 %}
 
 %start language
 
 %% /* language grammar */
 
-language : expression EOF{ return $1;}
+language : expression EOF{return list;}
         ;
 
 expression : sentence
-        {$$ = {"expression": [$1]}}
         | expression NEWLINE sentence
-        {$$ = {"expression": [$1,$3]};}
         ;
 
-sentence  :NAME_token SPACE TYPE_token SPACE CHOICE_token DOT
-        {$$ = {"sentence":get_tuples($1,$3,$5)}}
-        ;
-
-NAME_token   :NAME 
-    {$$ = {"NAME": yytext};}
-       ;
-
-TYPE_token   :TYPE
-    {$$ = {"TYPE": yytext};}
-        ;
-
-CHOICE_token  :CHOICE
-    {$$ = {"CHOICE": yytext};}
+sentence  :NAME SPACE TYPE SPACE CHOICE DOT
+        {list.push({"NAME":$1, "TYPE":$3, "CHOICE":$5})}
         ;
