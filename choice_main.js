@@ -51,14 +51,14 @@ var sentence = function(tuples){
 var sentenceGenerator = function(keys, filledDS){
 	var output = "";
 	keys.forEach(function(key){
-		if(filledDS[key]["likes"].length > 0){
-			output += key + " likes " + generateString(filledDS[key]["likes"]) + ". ";
-		}
-		if(filledDS[key]["hates"].length > 0){
-			output += key + " hates " + generateString(filledDS[key]["hates"]) + ". ";
-		}
+		(filledDS[key]["likes"].length ) && (output += oneSentence(key, "likes", filledDS));
+		(filledDS[key]["hates"].length ) && (output += oneSentence(key, "hates", filledDS));
 	})
 	return output;
+}
+
+var oneSentence = function(name, type, filledDS){
+	return name +" "+ type +" "+ generateString(filledDS[name][type]) + ". ";
 }
 
 var checker = function(tuples){
