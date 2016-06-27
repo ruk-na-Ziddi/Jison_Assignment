@@ -35,17 +35,12 @@ var fillDS = function(tuples, ds){
 }
 
 var otherType = function(type){
-	if(type == "likes")
-		return "hates"
-	return "likes"
+	return (type == "likes") ? "hates" : "likes"
 }
 
 var getType = function(tuple){
 	var _keys = Object.keys(tuple);
-	if(_keys.length == 3){
-		return tuple[_keys[1]];
-	}
-	return tuple[_keys[2]];
+	return (_keys.length == 3) ? tuple[_keys[1]] : tuple[_keys[2]];
 }
 
 var sentence = function(tuples){
