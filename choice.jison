@@ -6,6 +6,7 @@
 %%
 " "                   return 'SPACE';
 "ram"                 return 'NAME';
+"sita"                return 'NAME';
 "likes"               return 'TYPE';
 "hates"               return 'TYPE';
 "tea"                 return 'CHOICE';
@@ -33,5 +34,7 @@ expression : sentence
         ;
 
 sentence  :NAME SPACE TYPE SPACE CHOICE DOT
+        {list.push({"NAME":$1, "TYPE":$3, "CHOICE":$5})}
+        | NAME SPACE TYPE SPACE NAME DOT
         {list.push({"NAME":$1, "TYPE":$3, "CHOICE":$5})}
         ;

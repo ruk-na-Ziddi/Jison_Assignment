@@ -77,7 +77,7 @@ var parser = {trace: function trace() { },
 yy: {},
 symbols_: {"error":2,"language":3,"expression":4,"EOF":5,"sentence":6,"NEWLINE":7,"NAME":8,"SPACE":9,"TYPE":10,"CHOICE":11,"DOT":12,"$accept":0,"$end":1},
 terminals_: {2:"error",5:"EOF",7:"NEWLINE",8:"NAME",9:"SPACE",10:"TYPE",11:"CHOICE",12:"DOT"},
-productions_: [0,[3,2],[4,1],[4,3],[6,6]],
+productions_: [0,[3,2],[4,1],[4,3],[6,6],[6,6]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -86,12 +86,12 @@ switch (yystate) {
 case 1:
 return list;
 break;
-case 4:
+case 4: case 5:
 list.push({"NAME":$$[$0-5], "TYPE":$$[$0-3], "CHOICE":$$[$0-1]})
 break;
 }
 },
-table: [{3:1,4:2,6:3,8:$V0},{1:[3]},{5:[1,5],7:[1,6]},o($V1,[2,2]),{9:[1,7]},{1:[2,1]},{6:8,8:$V0},{10:[1,9]},o($V1,[2,3]),{9:[1,10]},{11:[1,11]},{12:[1,12]},o($V1,[2,4])],
+table: [{3:1,4:2,6:3,8:$V0},{1:[3]},{5:[1,5],7:[1,6]},o($V1,[2,2]),{9:[1,7]},{1:[2,1]},{6:8,8:$V0},{10:[1,9]},o($V1,[2,3]),{9:[1,10]},{8:[1,12],11:[1,11]},{12:[1,13]},{12:[1,14]},o($V1,[2,4]),o($V1,[2,5])],
 defaultActions: {5:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
@@ -577,11 +577,11 @@ case 0:return 9;
 break;
 case 1:return 8;
 break;
-case 2:return 10;
+case 2:return 8;
 break;
 case 3:return 10;
 break;
-case 4:return 11;
+case 4:return 10;
 break;
 case 5:return 11;
 break;
@@ -589,16 +589,18 @@ case 6:return 11;
 break;
 case 7:return 11;
 break;
-case 8:return 12;
+case 8:return 11;
 break;
-case 9:return 5;
+case 9:return 12;
 break;
-case 10:return 7;
+case 10:return 5;
+break;
+case 11:return 7;
 break;
 }
 },
-rules: [/^(?: )/,/^(?:ram\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10],"inclusive":true}}
+rules: [/^(?: )/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11],"inclusive":true}}
 });
 return lexer;
 })();

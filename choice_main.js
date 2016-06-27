@@ -66,4 +66,15 @@ var sentenceGenerator = function(tuples){
 	return output;
 }
 
-console.log(sentenceGenerator(parser_return, generateDS(parser_return)));
+var checker = function(tuples){
+	if(tuples[0]["ALSO"])
+		return "Wrong input"
+}
+
+var out = function(tuples){
+	return checker(tuples) || sentenceGenerator(tuples);
+}
+
+console.log(out(parser_return));
+
+// console.log(sentenceGenerator(parser_return, generateDS(parser_return)));
