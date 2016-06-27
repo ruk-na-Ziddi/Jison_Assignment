@@ -3,8 +3,6 @@ var lodash = require("lodash");
 
 var parser_return = parser(process.argv.slice(1));
 
-console.log(JSON.stringify(parser_return));
-
 var generateString = function(collection){
 	if(collection.length == 0)
 		return ""
@@ -67,8 +65,12 @@ var sentenceGenerator = function(tuples){
 }
 
 var checker = function(tuples){
-	if(tuples[0]["ALSO"])
-		return "Wrong input"
+	var err_template = ""
+	if(tuples[0]["ALSO"]){
+		err_template = "SEMANTIC ERROR: \n\n" + tuples[0]["NAME"] +" "+ tuples[0]["ALSO"] +" "+ tuples[0]["TYPE"] +" "+tuples[0]["CHOICE"];
+		err_template += " <- also appeared before context."
+		return err_template;
+	}
 }
 
 var out = function(tuples){
@@ -76,5 +78,3 @@ var out = function(tuples){
 }
 
 console.log(out(parser_return));
-
-// console.log(sentenceGenerator(parser_return, generateDS(parser_return)));
