@@ -41,7 +41,7 @@ var getType = function(tuple){
 	return (_keys.length == 3) ? tuple[_keys[1]] : tuple[_keys[2]];
 }
 
-var sentence = function(tuples){
+var summary = function(tuples){
 	var ds = generateDS(tuples);
 	var filled = fillDS(tuples, ds);
 	var _keys = Object.keys(filled);
@@ -51,17 +51,17 @@ var sentence = function(tuples){
 var sentenceGenerator = function(keys, filledDS){
 	var output = "";
 	keys.forEach(function(key){
-		output += oneSentence(key, "likes", filledDS);
-		output += oneSentence(key, "hates", filledDS);
+		output += sentence(key, "likes", filledDS);
+		output += sentence(key, "hates", filledDS);
 	})
 	return output;
 }
 
-var oneSentence = function(name, type, filledDS){
+var sentence = function(name, type, filledDS){
 	return (filledDS[name][type].length) ? (name +" "+ type +" "+ generateString(filledDS[name][type]) + ".\n") : "";
 }
 
-var checker = function(tuples){
+var errChecker = function(tuples){
 	var err_template = ""
 	if(tuples[0]["ALSO"]){
 		err_template = "SEMANTIC ERROR: \n\n" + tuples[0]["NAME"] +" "+ tuples[0]["ALSO"] +" "+ tuples[0]["TYPE"] +" "+tuples[0]["CHOICE"];
@@ -71,7 +71,7 @@ var checker = function(tuples){
 }
 
 var out = function(tuples){
-	return checker(tuples) || sentence(tuples);
+	return errChecker(tuples) || summary(tuples);
 }
 
 console.log(out(parser_return));
