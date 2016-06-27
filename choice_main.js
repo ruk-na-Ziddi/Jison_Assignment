@@ -48,17 +48,21 @@ var getType = function(tuple){
 	return tuple[_keys[2]];
 }
 
-var sentenceGenerator = function(tuples){
+var sentence = function(tuples){
 	var ds = generateDS(tuples);
 	var filled = fillDS(tuples, ds);
-	var output = "";
 	var _keys = Object.keys(filled);
-	_keys.forEach(function(key){
-		if(filled[key]["likes"].length > 0){
-			output += key + " likes " + generateString(filled[key]["likes"]) + ". ";
+	return sentenceGenerator(_keys, filled);
+}
+
+var sentenceGenerator = function(keys, filledDS){
+	var output = "";
+	keys.forEach(function(key){
+		if(filledDS[key]["likes"].length > 0){
+			output += key + " likes " + generateString(filledDS[key]["likes"]) + ". ";
 		}
-		if(filled[key]["hates"].length > 0){
-			output += key + " hates " + generateString(filled[key]["hates"]) + ". ";
+		if(filledDS[key]["hates"].length > 0){
+			output += key + " hates " + generateString(filledDS[key]["hates"]) + ". ";
 		}
 	})
 	return output;
@@ -74,7 +78,7 @@ var checker = function(tuples){
 }
 
 var out = function(tuples){
-	return checker(tuples) || sentenceGenerator(tuples);
+	return checker(tuples) || sentence(tuples);
 }
 
 console.log(out(parser_return));
