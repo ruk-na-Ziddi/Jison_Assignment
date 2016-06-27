@@ -4,8 +4,6 @@ var lodash = require("lodash");
 var parser_return = parser(process.argv.slice(1));
 
 var generateString = function(collection){
-	if(collection.length == 0)
-		return ""
 	if(collection.length == 1)
 		return collection[0];
 	var last = collection[collection.length - 1];
