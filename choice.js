@@ -587,16 +587,18 @@ case 5:return 11;
 break;
 case 6:return 11;
 break;
-case 7:return 12;
+case 7:return 11;
 break;
-case 8:return 5;
+case 8:return 12;
 break;
-case 9:return 7;
+case 9:return 5;
+break;
+case 10:return 7;
 break;
 }
 },
-rules: [/^(?: )/,/^(?:ram\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9],"inclusive":true}}
+rules: [/^(?: )/,/^(?:ram\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10],"inclusive":true}}
 });
 return lexer;
 })();

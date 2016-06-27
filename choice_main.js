@@ -1,5 +1,69 @@
 var parser = require("./choice.js").main;
+var lodash = require("lodash");
 
 var parser_return = parser(process.argv.slice(1));
 
 console.log(JSON.stringify(parser_return));
+
+var generateString = function(collection){
+	if(collection.length == 0)
+		return ""
+	if(collection.length == 1)
+		return collection[0];
+	var last = collection[collection.length - 1];
+	collection.pop();
+	return collection.join(", ") + " and "+ last;
+}
+
+var generateDS = function(tuples){
+	var final = {};
+	tuples.forEach(function(tuple){
+		final[tuple["NAME"]] = final[tuple["NAME"]] || {};
+		final[tuple["NAME"]]["likes"] = [];
+		final[tuple["NAME"]]["hates"] = [];
+	});
+	return final;
+}
+
+var fillDS = function(tuples, ds){
+	tuples.forEach(function(tuple){
+		var type = getType(tuple);
+		if(ds[tuple["NAME"]][otherType(type)].indexOf(tuple["CHOICE"]) > -1){
+			lodash.pull(ds[tuple["NAME"]][otherType(type)], tuple["CHOICE"])
+		}
+		ds[tuple["NAME"]][type].push(tuple["CHOICE"]);
+	})
+	return ds;
+}
+
+var otherType = function(type){
+	if(type == "likes")
+		return "hates"
+	return "likes"
+}
+
+var getType = function(tuple){
+	var _keys = Object.keys(tuple);
+	if(_keys.length == 3){
+		return tuple[_keys[1]];
+	}
+	return tuple[_keys[2]];
+}
+
+var out = function(tuples){
+	var ds = generateDS(tuples);
+	var filled = fillDS(tuples, ds);
+	var output = "";
+	var _keys = Object.keys(filled);
+	_keys.forEach(function(key){
+		if(filled[key]["likes"].length > 0){
+			output += key + " likes " + generateString(filled[key]["likes"]) + ". ";
+		}
+		if(filled[key]["hates"].length > 0){
+			output += key + " hates " + generateString(filled[key]["hates"]) + ". ";
+		}
+	})
+	return output;
+}
+
+console.log(out(parser_return, generateDS(parser_return)));

@@ -11,6 +11,7 @@
 "tea"                 return 'CHOICE';
 "coffee"              return 'CHOICE';
 "butter"              return 'CHOICE';
+"cheese"              return 'CHOICE';
 "."                   return 'DOT';
 <<EOF>>               return 'EOF';
 \n                    return 'NEWLINE';
