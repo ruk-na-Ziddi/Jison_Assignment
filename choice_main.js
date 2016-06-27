@@ -11,14 +11,20 @@ var generateString = function(collection){
 	return collection.join(", ") + " and "+ last;
 }
 
-var generateDS = function(tuples){
-	var final = {};
-	tuples.forEach(function(tuple){
-		final[tuple["NAME"]] = final[tuple["NAME"]] || {};
-		final[tuple["NAME"]]["likes"] = [];
-		final[tuple["NAME"]]["hates"] = [];
+var getNames = function(tuples){
+	return lodash.uniq(tuples.map(function(tuple){
+		return tuple["NAME"];
+	}))
+}
+
+var generateDS = function(names){
+	var ds = {};
+	names.forEach(function(name){
+		ds[name] = {};
+		ds[name]["likes"] = [];
+		ds[name]["hates"] = [];
 	});
-	return final;
+	return ds;
 }
 
 var fillDS = function(tuples, ds){
@@ -42,7 +48,7 @@ var getType = function(tuple){
 }
 
 var summary = function(tuples){
-	var ds = generateDS(tuples);
+	var ds = generateDS(getNames(tuples));
 	var filled = fillDS(tuples, ds);
 	var _keys = Object.keys(filled);
 	return sentenceGenerator(_keys, filled);
