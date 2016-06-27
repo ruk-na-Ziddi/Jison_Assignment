@@ -50,7 +50,7 @@ var getType = function(tuple){
 	return tuple[_keys[2]];
 }
 
-var out = function(tuples){
+var sentenceGenerator = function(tuples){
 	var ds = generateDS(tuples);
 	var filled = fillDS(tuples, ds);
 	var output = "";
@@ -66,4 +66,4 @@ var out = function(tuples){
 	return output;
 }
 
-console.log(out(parser_return, generateDS(parser_return)));
+console.log(sentenceGenerator(parser_return, generateDS(parser_return)));
