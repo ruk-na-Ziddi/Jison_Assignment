@@ -14,6 +14,7 @@
 "butter"              return 'CHOICE';
 "cheese"              return 'CHOICE';
 "biscuits"            return 'CHOICE';
+"also"                return 'ALSO';
 "."                   return 'DOT';
 <<EOF>>               return 'EOF';
 \n                    return 'NEWLINE';
@@ -38,4 +39,8 @@ sentence  :NAME SPACE TYPE SPACE CHOICE DOT
         {list.push({"NAME":$1, "TYPE":$3, "CHOICE":$5})}
         | NAME SPACE TYPE SPACE NAME DOT
         {list.push({"NAME":$1, "TYPE":$3, "CHOICE":$5})}
+        | NAME SPACE ALSO SPACE TYPE SPACE CHOICE DOT
+        {list.push({"NAME":$1, "ALSO":$3, "TYPE":$5 ,"CHOICE":$7})}
+        | NAME SPACE ALSO SPACE TYPE SPACE NAME DOT
+        {list.push({"NAME":$1, "ALSO":$3, "TYPE":$5 ,"CHOICE":$7})}
         ;

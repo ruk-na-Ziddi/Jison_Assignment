@@ -75,9 +75,9 @@ var choice = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,4],$V1=[5,7];
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"language":3,"expression":4,"EOF":5,"sentence":6,"NEWLINE":7,"NAME":8,"SPACE":9,"TYPE":10,"CHOICE":11,"DOT":12,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",7:"NEWLINE",8:"NAME",9:"SPACE",10:"TYPE",11:"CHOICE",12:"DOT"},
-productions_: [0,[3,2],[4,1],[4,3],[6,6],[6,6]],
+symbols_: {"error":2,"language":3,"expression":4,"EOF":5,"sentence":6,"NEWLINE":7,"NAME":8,"SPACE":9,"TYPE":10,"CHOICE":11,"DOT":12,"ALSO":13,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",7:"NEWLINE",8:"NAME",9:"SPACE",10:"TYPE",11:"CHOICE",12:"DOT",13:"ALSO"},
+productions_: [0,[3,2],[4,1],[4,3],[6,6],[6,6],[6,8],[6,8]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -89,9 +89,12 @@ break;
 case 4: case 5:
 list.push({"NAME":$$[$0-5], "TYPE":$$[$0-3], "CHOICE":$$[$0-1]})
 break;
+case 6: case 7:
+list.push({"NAME":$$[$0-7], "ALSO":$$[$0-5], "TYPE":$$[$0-3] ,"CHOICE":$$[$0-1]})
+break;
 }
 },
-table: [{3:1,4:2,6:3,8:$V0},{1:[3]},{5:[1,5],7:[1,6]},o($V1,[2,2]),{9:[1,7]},{1:[2,1]},{6:8,8:$V0},{10:[1,9]},o($V1,[2,3]),{9:[1,10]},{8:[1,12],11:[1,11]},{12:[1,13]},{12:[1,14]},o($V1,[2,4]),o($V1,[2,5])],
+table: [{3:1,4:2,6:3,8:$V0},{1:[3]},{5:[1,5],7:[1,6]},o($V1,[2,2]),{9:[1,7]},{1:[2,1]},{6:8,8:$V0},{10:[1,9],13:[1,10]},o($V1,[2,3]),{9:[1,11]},{9:[1,12]},{8:[1,14],11:[1,13]},{10:[1,15]},{12:[1,16]},{12:[1,17]},{9:[1,18]},o($V1,[2,4]),o($V1,[2,5]),{8:[1,20],11:[1,19]},{12:[1,21]},{12:[1,22]},o($V1,[2,6]),o($V1,[2,7])],
 defaultActions: {5:[2,1]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
@@ -593,16 +596,18 @@ case 8:return 11;
 break;
 case 9:return 11;
 break;
-case 10:return 12;
+case 10:return 13;
 break;
-case 11:return 5;
+case 11:return 12;
 break;
-case 12:return 7;
+case 12:return 5;
+break;
+case 13:return 7;
 break;
 }
 },
-rules: [/^(?: )/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12],"inclusive":true}}
+rules: [/^(?: )/,/^(?:ram\b)/,/^(?:sita\b)/,/^(?:likes\b)/,/^(?:hates\b)/,/^(?:tea\b)/,/^(?:coffee\b)/,/^(?:butter\b)/,/^(?:cheese\b)/,/^(?:biscuits\b)/,/^(?:also\b)/,/^(?:\.)/,/^(?:$)/,/^(?:\n)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13],"inclusive":true}}
 });
 return lexer;
 })();
