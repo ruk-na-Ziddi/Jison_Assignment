@@ -13,6 +13,7 @@
 "coffee"              return 'CHOICE';
 "butter"              return 'CHOICE';
 "cheese"              return 'CHOICE';
+"biscuits"            return 'CHOICE';
 "."                   return 'DOT';
 <<EOF>>               return 'EOF';
 \n                    return 'NEWLINE';
