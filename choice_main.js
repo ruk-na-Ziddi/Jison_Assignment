@@ -58,7 +58,7 @@ var sentenceGenerator = function(keys, filledDS){
 }
 
 var oneSentence = function(name, type, filledDS){
-	return (filledDS[name][type].length) ? (name +" "+ type +" "+ generateString(filledDS[name][type]) + ". ") : "";
+	return (filledDS[name][type].length) ? (name +" "+ type +" "+ generateString(filledDS[name][type]) + ".\n") : "";
 }
 
 var checker = function(tuples){
