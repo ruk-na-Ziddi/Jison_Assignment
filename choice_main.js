@@ -50,15 +50,15 @@ var getType = function(tuple){
 var summary = function(tuples){
 	var ds = generateDS(getNames(tuples));
 	var filled = fillDS(tuples, ds);
-	var _keys = Object.keys(filled);
-	return sentenceGenerator(_keys, filled);
+	return sentenceGenerator(filled);
 }
 
-var sentenceGenerator = function(keys, filledDS){
+var sentenceGenerator = function(filledDS){
 	var output = "";
-	keys.forEach(function(key){
-		output += sentence(key, "likes", filledDS);
-		output += sentence(key, "hates", filledDS);
+	var names = Object.keys(filledDS);
+	names.forEach(function(name){
+		output += sentence(name, "likes", filledDS);
+		output += sentence(name, "hates", filledDS);
 	})
 	return output;
 }
